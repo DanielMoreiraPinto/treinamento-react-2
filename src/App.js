@@ -8,7 +8,6 @@ function App() {
 
   
   return (
-    //<div class="jumbotron-fluid"></div>
     <Switch>
       <Route exact path='/' component={Homepage}/>
       <Route exact path='/restaurants/:handle' component={Restaurant}/>
