@@ -3,6 +3,7 @@ import {Jumbotron, Button, Container, ButtonGroup, } from 'react-bootstrap';
 import RestaurantList from '../../components/RestaurantList/RestaurantList.component';
 import './Homepage.stylesheet.css'
 import Yelp from '../../apis/yelp.json';
+import { findAllByDisplayValue } from '@testing-library/react';
 
 export default function Homepage(){
     const [results, setResults] = React.useState([]);
@@ -36,12 +37,11 @@ export default function Homepage(){
     }
 
     const filterByCategoryNation = categoryNation => {
+        function check(category) {
+            return category.alias === categoryNation;
+        }
         setDisplayResults([...results].filter(
-            item => item.categories.forEach((elem) => {
-                console.log(elem.alias + " " + categoryNation);
-                if(elem.alias == categoryNation)
-                    return true;
-            })
+            item => item.categories.some(check)
         ));
     }
     

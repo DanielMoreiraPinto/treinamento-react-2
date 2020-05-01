@@ -8,7 +8,7 @@ export default function Header() {
       <Navbar.Brand> Trouvez-les: Nouriturre </Navbar.Brand>
         <Nav>
           <Nav.Link as={Link} to='/'> Principal </Nav.Link>
-          <Nav.Link as={Link} to='/'> Sobre nós </Nav.Link>
+          <Nav.Link as={Link} to='/sobre-nos'> Sobre nós </Nav.Link>
         </Nav>
     </Navbar>
   );
