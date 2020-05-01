@@ -22,9 +22,27 @@ export default function Homepage(){
         setDisplayResults([...results].sort(compare));
     }
 
+    const orderByName = () => {
+        function compare(n1, n2) {
+            if(n1.name > n2.name)
+                return 1;
+            return -1;
+        }
+        setDisplayResults([...results].sort(compare));
+    }
+
     const filterByPrice = price => {
-        console.log(results);
         setDisplayResults([...results].filter(item => item.price === price));
+    }
+
+    const filterByCategoryNation = categoryNation => {
+        setDisplayResults([...results].filter(
+            item => item.categories.forEach((elem) => {
+                console.log(elem.alias + " " + categoryNation);
+                if(elem.alias == categoryNation)
+                    return true;
+            })
+        ));
     }
     
     return(
@@ -33,12 +51,23 @@ export default function Homepage(){
                 <Button onClick = {orderByRating}>
                     Ordenar por avaliação
                 </Button>
+                <Button onClick = {orderByName}>
+                    Exibir em ordem alfabética
+                </Button>
                 <Container className="filterContainer">
                     Filtrar por preço: 
                     <ButtonGroup>
                         <Button onClick = {() => {filterByPrice('$')}}>$</Button>
                         <Button onClick = {() => {filterByPrice('$$')}}>$$</Button>
                         <Button onClick = {() => {filterByPrice('$$$')}}>$$$</Button>
+                    </ButtonGroup>
+                </Container>
+                <Container className="filterContainer">
+                    Filtrar por tipo de comida: 
+                    <ButtonGroup>
+                        <Button onClick = {() => {filterByCategoryNation('brazilian')}}>Brasileira</Button>
+                        <Button onClick = {() => {filterByCategoryNation('japanese')}}>Japonesa</Button>
+                        <Button onClick = {() => {filterByCategoryNation('french')}}>Francesa</Button>
                     </ButtonGroup>
                 </Container>
             </Container>
